@@ -15,13 +15,13 @@ class router {
     }
 
     private function __construct() {
-		$pre_path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
-		$path = str_replace($pre_path, '', $_SERVER['REQUEST_URI']);
-		
-		//Если в конце строки 2 слэша, то обозначем это для дальнейшего редиректа
-        if ($path[strlen($path) - 1] == '/' and $path[strlen($path) - 2] == '/') {
-            $flag = true;
-        }
+	$pre_path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);		
+	$replace = ($pre_path == '/') ? $pre_path : '';		
+	$path = str_replace($pre_path, $replace, $_SERVER['REQUEST_URI']);
+
+	if ($path[0] == '/') {
+		$path = substr($path, 1);
+	}
 
         //Удаляем последний слэш, если он есть
         if ($path[strlen($path) - 1] == '/') {
