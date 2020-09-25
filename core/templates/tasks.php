@@ -16,7 +16,12 @@
 		<? $checked = ($data['tasks'][$i]->status == 1) ? 'checked' : '' ; ?>
 		<div><a href="<?= home('/edit/' . $data['tasks'][$i]->id); ?>"><img src="<?= home('/img/edit.png'); ?>"></a></div>
 		<? endif; ?>
-		<div class="col col-lg-2" id="status_<?= $data['tasks'][$i]->id; ?>"><?= $data['status'][$data['tasks'][$i]->status]; ?></div>
+		<div class="col">
+			<div class="col col-lg-2" id="status_<?= $data['tasks'][$i]->id; ?>"><?= $data['status'][$data['tasks'][$i]->status]; ?></div>
+			<? if ($data['tasks'][$i]->edited == 1): ?>
+			<div class="col col-lg-2" >Отредактировано администратором</div>
+			<? endif; ?>
+		</div>
 		<? if (login_admin()): ?>
 		<? $checked = ($data['tasks'][$i]->status == 1) ? 'checked' : '' ; ?>
 		<div><input type="checkbox" <?= $checked; ?> onclick="change('<?= $data['tasks'][$i]->id; ?>')" id="status_checkbox_<?= $data['tasks'][$i]->id; ?>"></div>
