@@ -18,7 +18,7 @@ function edit_task(id) {
 	
 	$('#result').html('');
 	
-	$.post('action.php', {edit: 'edit_task', id: id, username: username, email: email, text: text}, result);
+	$.post('/action.php', {edit: 'edit_task', id: id, username: username, email: email, text: text}, result);
 	function result(data) {
 		$('#result').html(data);
 	}
